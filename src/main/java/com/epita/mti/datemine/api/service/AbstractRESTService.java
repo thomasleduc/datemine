@@ -3,6 +3,7 @@ package com.epita.mti.datemine.api.service;
 import com.epita.mti.datemine.data.Business.AbstractBusiness;
 import com.epita.mti.datemine.data.DAO.AbstractDAO;
 import com.epita.mti.datemine.data.Entity.AbstractEntity;
+import com.epita.mti.datemine.tools.RESTError;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 
@@ -103,10 +105,15 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public T add(T entity) {
+    public Response add(T entity) {
         Logger.getLogger(getElementName()).log(Level.INFO, null, "add");
         
-        return entity;
+        RESTError err = getBusiness().checkBeforeAdding(entity);
+        
+        if (err != null)
+            return err.getResponse().build();
+        
+        return Response.ok(entity, MediaType.APPLICATION_JSON).build();
     }
 
 }
