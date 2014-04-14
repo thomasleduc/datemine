@@ -10,7 +10,7 @@ import javax.ws.rs.ext.Provider;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @Provider
 @PreMatching

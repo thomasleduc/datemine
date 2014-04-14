@@ -26,7 +26,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
     /**
      * @return The entity manager property.
      */
-    public final EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return em;
     }
 
