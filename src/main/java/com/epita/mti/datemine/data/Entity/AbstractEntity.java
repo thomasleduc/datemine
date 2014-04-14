@@ -1,4 +1,4 @@
-package com.epita.mti.datemine.Entity;
+package com.epita.mti.datemine.data.Entity;
 
 import java.io.Serializable;
 import java.util.List;

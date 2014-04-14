@@ -1,6 +1,6 @@
-package com.epita.mti.datemine.DAO;
+package com.epita.mti.datemine.data.DAO;
 
-import com.epita.mti.datemine.Entity.User;
+import com.epita.mti.datemine.data.Entity.User;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 

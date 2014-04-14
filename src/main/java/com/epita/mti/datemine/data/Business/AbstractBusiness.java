@@ -4,10 +4,10 @@
  * his professor in this project.
  */
 
-package com.epita.mti.datemine.Business;
+package com.epita.mti.datemine.data.Business;
 
-import com.epita.mti.datemine.DAO.AbstractDAO;
-import com.epita.mti.datemine.Entity.AbstractEntity;
+import com.epita.mti.datemine.data.DAO.AbstractDAO;
+import com.epita.mti.datemine.data.Entity.AbstractEntity;
 import java.util.Collection;
 
 /**

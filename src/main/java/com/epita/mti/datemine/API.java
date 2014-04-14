@@ -1,5 +1,8 @@
 package com.epita.mti.datemine;
 
+import com.epita.mti.datemine.api.service.AbstractRESTService;
+import com.epita.mti.datemine.api.service.UserRESTService;
+import com.epita.mti.datemine.tools.ResponseCorsFilter;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
@@ -23,6 +26,9 @@ public class API extends Application {
      */
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new HashSet<Class<?>>();
+        resources.add(AbstractRESTService.class);
+        resources.add(UserRESTService.class);
+        resources.add(ResponseCorsFilter.class);
         return resources;
     }
 }

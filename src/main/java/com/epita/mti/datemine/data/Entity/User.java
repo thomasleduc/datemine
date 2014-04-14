@@ -1,4 +1,4 @@
-package com.epita.mti.datemine.Entity;
+package com.epita.mti.datemine.data.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

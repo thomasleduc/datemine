@@ -1,6 +1,6 @@
-package com.epita.mti.datemine.DAO;
+package com.epita.mti.datemine.data.DAO;
 
-import com.epita.mti.datemine.Entity.AbstractEntity;
+import com.epita.mti.datemine.data.Entity.AbstractEntity;
 import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

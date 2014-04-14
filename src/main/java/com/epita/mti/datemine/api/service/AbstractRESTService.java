@@ -1,8 +1,8 @@
 package com.epita.mti.datemine.api.service;
 
-import com.epita.mti.datemine.Business.AbstractBusiness;
-import com.epita.mti.datemine.DAO.AbstractDAO;
-import com.epita.mti.datemine.Entity.AbstractEntity;
+import com.epita.mti.datemine.data.Business.AbstractBusiness;
+import com.epita.mti.datemine.data.DAO.AbstractDAO;
+import com.epita.mti.datemine.data.Entity.AbstractEntity;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -95,6 +95,7 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
     @Path("/list-json")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<T> findAll() {
+        Logger.getLogger(getElementName()).log(Level.INFO, null, "list json");
         return getBusiness().findAll();
     }
 

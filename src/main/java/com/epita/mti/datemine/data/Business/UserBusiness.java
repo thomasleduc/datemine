@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.epita.mti.datemine.Business;
+package com.epita.mti.datemine.data.Business;
 
-import com.epita.mti.datemine.DAO.UserDAO;
-import com.epita.mti.datemine.Entity.User;
+import com.epita.mti.datemine.data.DAO.UserDAO;
+import com.epita.mti.datemine.data.Entity.User;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

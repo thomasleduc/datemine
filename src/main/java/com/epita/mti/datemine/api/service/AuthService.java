@@ -6,6 +6,10 @@
 
 package com.epita.mti.datemine.api.service;
 
+import com.epita.mti.datemine.data.Business.UserBusiness;
+import com.epita.mti.datemine.data.DAO.UserDAO;
+import com.epita.mti.datemine.data.Entity.User;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -18,7 +22,15 @@ import javax.ws.rs.QueryParam;
  * @author macbookpro
  */
 @Path("/auth")
-public class AuthService {
+public class AuthService extends AbstractRESTService<UserBusiness, UserDAO, User> {
+    
+    @Inject
+    private UserBusiness userBusiness;
+    
+    @Override
+    public UserBusiness getBusiness() {
+        return userBusiness;
+    }
 
     @GET
     @Path("/handshake")
