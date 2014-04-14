@@ -13,7 +13,7 @@ import lombok.Setter;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @Entity
 @XmlRootElement

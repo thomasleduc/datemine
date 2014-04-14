@@ -31,4 +31,17 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         return userDAO;
     }
 
+    @Override
+    public Error checkBeforeAdding(User entity) {
+
+        if (entity == null) return Error.;
+        if (entity.getLogin() == null 
+                || entity.getLogin().length() < 5
+                || entity.getLogin().length() > 45) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

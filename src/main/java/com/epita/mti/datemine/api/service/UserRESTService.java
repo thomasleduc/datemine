@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)

@@ -26,6 +26,14 @@ public abstract class AbstractBusiness
     public abstract D getDao();
 
     /**
+     * Check if the entity is ok to add in database
+     * Caution it doesn't check the persist error like constrains.
+     * @param entity
+     * @return if the entity is good to be stored
+     */
+    public abstract Error checkBeforeAdding(T entity);
+
+    /**
      * Find all the entities managed by the instance of the business class.
      * @return all the entities managed by the instance of the business class.
      */

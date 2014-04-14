@@ -102,9 +102,10 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
     @PUT
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public T add(T entity) {
         Logger.getLogger(getElementName()).log(Level.INFO, null, "add");
-        System.out.println(entity.toString());
+        
         return entity;
     }
 
