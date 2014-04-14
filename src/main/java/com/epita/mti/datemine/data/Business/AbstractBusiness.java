@@ -8,6 +8,7 @@ package com.epita.mti.datemine.data.Business;
 
 import com.epita.mti.datemine.data.DAO.AbstractDAO;
 import com.epita.mti.datemine.data.Entity.AbstractEntity;
+import com.epita.mti.datemine.tools.RESTError;
 import java.util.Collection;
 
 /**
@@ -26,12 +27,12 @@ public abstract class AbstractBusiness
     public abstract D getDao();
 
     /**
-     * Check if the entity is ok to add in database
+     * Check if the entity is OK to add in database
      * Caution it doesn't check the persist error like constrains.
      * @param entity
-     * @return if the entity is good to be stored
+     * @return null if it's OK, else a rest error.
      */
-    public abstract Error checkBeforeAdding(T entity);
+    public abstract RESTError checkBeforeAdding(T entity);
 
     /**
      * Find all the entities managed by the instance of the business class.

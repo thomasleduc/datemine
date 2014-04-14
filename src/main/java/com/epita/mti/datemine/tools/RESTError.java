@@ -12,11 +12,16 @@ import lombok.Setter;
 /**
  * @author leduc_t
  */
-public enum Error {
-    USER_LOGIN_TOO_SHORT("user_login_too_short", "The user login is too short"),
-    USER_LOGIN_TOO_LONG("user_login_too_long", "The user login is too long"),
-    USER_EMAIL_BAD_FORMAT("user_email_bad_format", "The user email is not correct");
+public enum RESTError {
+    BAD_PARAMETER(405, "bad_parameter", "The parameter are malformated"),
+    LOGIN_TOO_SHORT(405, "login_too_short", "The login is too short"),
+    LOGIN_TOO_LONG(405, "login_too_long", "The login is too long"),
+    EMAIL_BAD_FORMAT(405, "email_bad_format", "The email is not correct");
 
+    /**
+     * The HTTP Error code.
+     */
+    @Getter @Setter private int HTTPErrorCode;
     /**
      * The error short name (for JAVASCRIPT management).
      */
@@ -32,7 +37,8 @@ public enum Error {
      * @param name
      * @param description 
      */
-    Error (String name, String description) {
+    RESTError (int code, String name, String description) {
+        this.HTTPErrorCode = code;
         this.name = name;
         this.description = description;
     }

@@ -8,6 +8,7 @@ package com.epita.mti.datemine.data.Business;
 
 import com.epita.mti.datemine.data.DAO.UserDAO;
 import com.epita.mti.datemine.data.Entity.User;
+import com.epita.mti.datemine.tools.RESTError;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,16 +33,13 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
     }
 
     @Override
-    public Error checkBeforeAdding(User entity) {
+    public RESTError checkBeforeAdding(User entity) {
 
-        if (entity == null) return Error.;
-        if (entity.getLogin() == null 
-                || entity.getLogin().length() < 5
-                || entity.getLogin().length() > 45) {
-            return false;
-        }
+        if (entity == null) return RESTError.BAD_PARAMETER;
+        if (entity.getLogin() == null ) return RESTError.BAD_PARAMETER;
+        if (entity.getLogin().length() < 5) return RESTError.LOGIN_TOO_SHORT;
+        if (entity.getLogin().length() > 45) return RESTError.LOGIN_TOO_LONG;
 
-        return true;
+        return null;
     }
-
 }
