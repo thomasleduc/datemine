@@ -2,16 +2,23 @@ package com.epita.mti.datemine.data.Entity;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
  *
  * @author leduc_t
  */
+@Entity
+@XmlRootElement
+@AllArgsConstructor @NoArgsConstructor
 public class Task extends AbstractEntity {
 
     /**
