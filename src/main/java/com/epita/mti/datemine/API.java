@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @ApplicationPath("/api")
 public class API extends Application {

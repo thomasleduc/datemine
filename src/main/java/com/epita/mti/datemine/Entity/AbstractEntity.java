@@ -6,13 +6,11 @@ import java.util.List;
 /**
  * The Abstract class which defined the Entity level.
  * @author leduc_t
- * @param <T>
  */
-public abstract class AbstractEntity<T extends Comparable<T>>
-implements Serializable, Comparable<AbstractEntity<T>> {
+public abstract class AbstractEntity implements Serializable, Comparable<AbstractEntity> {
 
     @Override
-    public int compareTo(final AbstractEntity<T> o) {
+    public int compareTo(final AbstractEntity o) {
         return getId().compareTo(o.getId());
     }
 
@@ -24,20 +22,20 @@ implements Serializable, Comparable<AbstractEntity<T>> {
     @Override
     public boolean equals(final Object obj) {
         return obj.getClass().equals(getClass())
-                && ((AbstractEntity<T>) obj).getId().equals(getId());
+                && ((AbstractEntity) obj).getId().equals(getId());
     }
 
     /**
      * The id getter.
      * @return The id of the Entity
      */
-    public abstract T getId();
+    public abstract Integer getId();
 
     /**
      * The id setter.
      * @param id The value of the id to put in the property
      */
-    public abstract void setId(T id);
+    public abstract void setId(Integer id);
 
     @Override
     public int hashCode() {
