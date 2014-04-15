@@ -14,7 +14,7 @@ We're using **mySQL** for its simplicity but you can easily change, but the only
 
 **If you choose MySQL**, just follow this simple steps :
 
-- Get the _datemine.sql_ file in the _Other Ressources_ folder. [on GitHub](https://github.com/thomasleduc/datemine/blob/master/src/main/resources/datemime.sql "datemime.sql")
+- Get the _datemine.sql_ file in the _Other Ressources_ folder. [on GitHub](https://github.com/thomasleduc/datemine/blob/master/src/main/resources/datemine.sql "datemine.sql")
 - Launch a mysql server.
 - Execute it in your favorite mysql manager (_Mysql Workbench_ for example).
 
