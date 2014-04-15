@@ -54,14 +54,14 @@ DROP TABLE IF EXISTS `sharing`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sharing` (
   `id` int(11) NOT NULL,
-  `id_project` int(11) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `project_right` int(11) DEFAULT '4',
+  `project` int(11) DEFAULT NULL,
+  `user` int(11) DEFAULT NULL,
+  `sharing_right` int(11) DEFAULT '4',
   PRIMARY KEY (`id`),
-  KEY `sharing_project_idx` (`id_project`),
-  KEY `sharing_with_user_idx` (`id_user`),
-  CONSTRAINT `sharing_project` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `sharing_with_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `sharing_project_idx` (`project`),
+  KEY `sharing_with_user_idx` (`user`),
+  CONSTRAINT `sharing_project` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `sharing_with_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,7 +119,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(45) NOT NULL,
   `passwd` varchar(45) NOT NULL,
-  `creationdate` date DEFAULT NULL,
+  `creationdate` datetime DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`),
@@ -145,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-15  0:40:09
+-- Dump completed on 2014-04-15 13:24:08

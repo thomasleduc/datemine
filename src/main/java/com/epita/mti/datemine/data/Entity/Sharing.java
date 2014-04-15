@@ -49,15 +49,15 @@ public class Sharing extends AbstractEntity {
     @Getter @Setter private User user;
     /**
      * The right of the user on the project,
-     * chmod like (1, 2, 4),
+     * CHMOD like (1, 2, 4),
      * default (4).
      */
-    @Column
-    @Getter @Setter private Integer sharing_right;
+    @Column(name = "sharing_right")
+    @Getter @Setter private Integer right;
 
     @Override
     public String asCSV() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return toCSV(id, project, user, right);
     }
-    
+
 }
