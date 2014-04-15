@@ -25,14 +25,40 @@ We're using **mySQL** for its simplicity but you can easily change, but the only
 - Task(id, name, status, progress, parent, project, ???) : The task table
 - Sharing (id, user, project, right): The _relationship_ table that configure the right of users on project
 
-#### Step 2 : NetBeans
+#### Step 2 : Create a Web Application with NetBeans
 
 Once again, if you don't want to use other IDE ... ~~up to you~~.
 
 - Create a web applications.
 File > New Project > Maven > Web Application. **Call it datemine** and the main package **com.epita.mti**.
 
+#### Step 3 : Launch and configure Glassfish
 
+- Run the project : ![Netbeans run icon](http://www.firediy.fr/images/articles/Moppy/run.png "Netbeans run icon").
+- In your favorite browser go to [http://localhost:4848](http://localhost:4848 "http://localhost:4848"), The Glassfish admin interface.
+- In the left panel, expand _JDBC_ :
+..- **Add a JDBC Connection Pool** :
+....+ click on _JDBC Connection Pool_ Folder,
+....+ put **datemine** as _Pool Name_,
+....+ select **javax.sql.DataSource** as _Resource Type_,
+....+ select **MySql** as _Data Driver Vendor_,
+....+ in _Additional properties_ set the folowing values (use browser search function) :
+......- User -> **root** (or what your MySql username is)
+......- Password -> **root** (or what your Mysql password is)
+......- ServerName -> **localhost** (or what your MySql server adress is)
+......- Port -> **3306** (or what your MySql server port is)
+......- DatabaseName -> **datemine**
+......- Encoding -> **UTF-8**
+......- Url: **jdbc:mysql://localhost:3306/datemine**
+......- URL: **jdbc:mysql://localhost:3306/datemine**
+......- zeroDateTimeBehavior: **convertToNull**
+....+ you can use the _ping_ button to verify the precedent setting. 
+..- **Add a JDBC Ressources** pointing on the JDBC Connection pool :
+....+ click on _JDBC Ressouces_,
+....+ put **jdbc/datemine** as _JDNI Name_,
+....+ select **datemine** as _Pool Name_.
+
+#### Step 4 : Get the remote sources
 - Go in the project folder
 
 ``` sh
@@ -45,11 +71,14 @@ cd ~/NetBeansProjects/datemine/
 git init
 git remote add origin https://github.com/thomasleduc/datemine.git
 git pull
-git commit -am 'merge with an awesome project, My name is *yourname*'
+git commit -am 'My name is *yourname* and merge with an awesome project.'
 ```
-#### Step 3 : Glassfish
 
--Build and clean the project : ![Netbeans clean & build icon](http://2.bp.blogspot.com/_9hmP3Ho0t14/S3CbTCYXxqI/AAAAAAAAAY4/AOvjXs3cgec/s400/Picture+10.png "Netbeans clean & build icon")
+#### Step 5 : Final
+
+- Clean & build the project : ![Netbeans clean & build icon](http://2.bp.blogspot.com/_9hmP3Ho0t14/S3CbTCYXxqI/AAAAAAAAAY4/AOvjXs3cgec/s400/Picture+10.png "Netbeans clean & build icon")
+- Run the project : ![Netbeans run icon](http://www.firediy.fr/images/articles/Moppy/run.png "Netbeans run icon")
+- Go to the Glassfish log in Netbeans -> is it ok ?
 
 ### Test
 
