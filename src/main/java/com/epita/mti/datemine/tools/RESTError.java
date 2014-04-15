@@ -17,6 +17,7 @@ import lombok.Setter;
  */
 public enum RESTError {
     BAD_PARAMETER(Status.NOT_ACCEPTABLE, "bad_parameter"),
+    NOT_FOUND(Status.NOT_FOUND, "entity_not_found"),
     LOGIN_TOO_SHORT(Status.NOT_ACCEPTABLE, "login_too_short"),
     LOGIN_TOO_LONG(Status.NOT_ACCEPTABLE, "login_too_long"),
     EMAIL_BAD_FORMAT(Status.NOT_ACCEPTABLE, "email_bad_format");

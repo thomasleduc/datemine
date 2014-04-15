@@ -84,7 +84,7 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `id` int(11) NOT NULL,
   `name` varchar(80) NOT NULL,
-  `deadline` datetime DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `progress` int(11) NOT NULL DEFAULT '0',
   `priority` int(11) NOT NULL DEFAULT '0',
@@ -119,7 +119,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(45) NOT NULL,
   `passwd` varchar(45) NOT NULL,
-  `creationdate` datetime DEFAULT NULL,
+  `creationdate` date DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`),

@@ -12,6 +12,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -84,6 +85,17 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
         }
         strB.append("]");
         return strB.toString();
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findById(@PathParam("id") Integer id) {
+        Logger.getLogger(getElementName()).log(Level.INFO, null, "list acess");
+        if (id == null) RESTError.BAD_PARAMETER.getResponse().build();
+        T entity = getBusiness().findById(id);
+        if (entity == null) return RESTError.NOT_FOUND.getResponse().build();
+        return Response.ok(entity, MediaType.APPLICATION_JSON).build();
     }
     
     @GET

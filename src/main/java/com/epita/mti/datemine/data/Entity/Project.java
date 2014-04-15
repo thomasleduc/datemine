@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +15,7 @@ import lombok.Setter;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @Entity
 @XmlRootElement
@@ -40,7 +42,12 @@ public class Project extends AbstractEntity {
     @Column
     @Getter @Setter private String url; 
 
-    // @Getter @Setter private User owner;
+    /**
+     * The user who own the project.
+     */
+    @ManyToOne
+    @JoinColumn
+    @Getter @Setter private User owner;
     
     @Override
     public String asCSV() {

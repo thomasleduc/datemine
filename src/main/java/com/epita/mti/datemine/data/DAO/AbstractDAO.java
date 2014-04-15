@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 /**
  * The abstract class which defined the DAO level.
@@ -58,15 +59,13 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
         // get all entities
         return allQuery.getResultList();
     }
-    
+
     /**
      * Push the entity.
      * @param entity The entity to push.
      */
+    @Transactional(Transactional.TxType.REQUIRED)
     public void persist(final T entity) {
-        EntityManager eM = getEntityManager();
-        eM.getTransaction().begin();
-        eM.persist(entity);
-        eM.getTransaction().commit();
+        em.persist(entity);
     }
 }

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +41,9 @@ public class Task extends AbstractEntity {
      * The task deadline.
      */
     @Column
-    @Getter @Setter private Date deadline;
+    @Getter @Setter
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date deadline;
     /**
      * The task description.
      */
@@ -60,8 +65,18 @@ public class Task extends AbstractEntity {
      */
     @Column
     @Getter @Setter private Integer status;
-    // Parent task
-    // Project
+    /**
+     * The task group of the task.
+     */
+    @ManyToOne
+    @JoinColumn
+    @Getter @Setter private Task parent;
+    /**
+     * The project of the task.
+     */
+    @ManyToOne
+    @JoinColumn
+    @Getter @Setter private Project project;
 
     @Override
     public String asCSV() {
