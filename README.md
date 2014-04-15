@@ -82,4 +82,4 @@ git commit -am 'My name is *yourname* and merge with an awesome project.'
 
 ### Test
 
-After installing NB 6.0, get NB 6.0 'RESTful Web Services' plugin from the NB 6.0 IDE menu "Tools->Plugins->Available Plugins. After installing the plugin(s), IDE restarts.
+TODO
