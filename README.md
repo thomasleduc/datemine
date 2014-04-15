@@ -37,26 +37,26 @@ File > New Project > Maven > Web Application. **Call it datemine** and the main 
 - Run the project : ![Netbeans run icon](http://www.firediy.fr/images/articles/Moppy/run.png "Netbeans run icon").
 - In your favorite browser go to [http://localhost:4848](http://localhost:4848 "http://localhost:4848"), The Glassfish admin interface.
 - In the left panel, expand _JDBC_ :
-..- **Add a JDBC Connection Pool** :
-....+ click on _JDBC Connection Pool_ Folder,
-....+ put **datemine** as _Pool Name_,
-....+ select **javax.sql.DataSource** as _Resource Type_,
-....+ select **MySql** as _Data Driver Vendor_,
-....+ in _Additional properties_ set the folowing values (use browser search function) :
-......- User -> **root** (or what your MySql username is)
-......- Password -> **root** (or what your Mysql password is)
-......- ServerName -> **localhost** (or what your MySql server adress is)
-......- Port -> **3306** (or what your MySql server port is)
-......- DatabaseName -> **datemine**
-......- Encoding -> **UTF-8**
-......- Url: **jdbc:mysql://localhost:3306/datemine**
-......- URL: **jdbc:mysql://localhost:3306/datemine**
-......- zeroDateTimeBehavior: **convertToNull**
-....+ you can use the _ping_ button to verify the precedent setting. 
-..- **Add a JDBC Ressources** pointing on the JDBC Connection pool :
-....+ click on _JDBC Ressouces_,
-....+ put **jdbc/datemine** as _JDNI Name_,
-....+ select **datemine** as _Pool Name_.
+  - **Add a JDBC Connection Pool** :
+    + click on _JDBC Connection Pool_ Folder,
+    + put **datemine** as _Pool Name_,
+    + select **javax.sql.DataSource** as _Resource Type_,
+    + select **MySql** as _Data Driver Vendor_,
+    + in _Additional properties_ set the folowing values (use browser search function) :
+      - User -> **root** (or what your MySql username is)
+      - Password -> **root** (or what your Mysql password is)
+      - ServerName -> **localhost** (or what your MySql server adress is)
+      - Port -> **3306** (or what your MySql server port is)
+      - DatabaseName -> **datemine**
+      - Encoding -> **UTF-8**
+      - Url: **jdbc:mysql://localhost:3306/datemine**
+      - URL: **jdbc:mysql://localhost:3306/datemine**
+      - zeroDateTimeBehavior: **convertToNull**
+    + you can use the _ping_ button to verify the precedent setting. 
+  - **Add a JDBC Ressources** pointing on the JDBC Connection pool :
+    + click on _JDBC Ressouces_,
+    + put **jdbc/datemine** as _JDNI Name_,
+    + select **datemine** as _Pool Name_.
 
 #### Step 4 : Get the remote sources
 - Go in the project folder
