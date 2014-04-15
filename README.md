@@ -4,28 +4,28 @@ datemine
 A great task manager
 
 
-# Installation
+## Installation
 
 I don't know how to make it properly. Java has so many dependencies ... So if you have a better idea, feel free to tell me what I should write next.
 
-## Step 1 : SQL
+#### Step 1 : SQL
 
-We're using *mySQL* for its simplicity but you can easily change, but the only thing is that I can't help you anymore if you choose the powerfull way.
+We're using **mySQL** for its simplicity but you can easily change, but the only thing is that I can't help you anymore if you choose the powerfull way.
 
-*If you choose MySQL*, just follow this simple steps :
+**If you choose MySQL**, just follow this simple steps :
 
-- Get the _datemine.sql_ file in the _Other Ressources_ folder.
+- Get the _datemine.sql_ file in the _Other Ressources_ folder. [on GitHub](https://github.com/thomasleduc/datemine/blob/master/src/main/resources/datetime.sql "datetime.sql")
 - Launch a mysql server.
 - Execute it in your favorite mysql manager (_Mysql Workbench_ for example).
 
-*Else* they are 5 tables to create :
+**Else** they are 5 tables to create :
 
 - User (id, login, passwd, email, creationdate) : The user table
 - Project (id, name, description, owner, ???) : The project table
 - Task(id, name, status, progress, parent, project, ???) : The task table
 - Sharing (id, user, project, right): The _relationship_ table that configure the right of users on project
 
-## Step 2 : NetBeans
+#### Step 2 : NetBeans
 
 Once again, if you don't want to use other IDE ... up to you.
 
