@@ -27,17 +27,30 @@ We're using **mySQL** for its simplicity but you can easily change, but the only
 
 #### Step 2 : NetBeans
 
-Once again, if you don't want to use other IDE ... up to you.
+Once again, if you don't want to use other IDE ... ~~up to you~~.
 
 - Create a web applications.
-File > New Project > Maven > Web Application. Call it _datemine_ and the main package _com.epita.mti_.
+File > New Project > Maven > Web Application. **Call it datemine** and the main package **com.epita.mti**.
 
 
 - Go in the project folder
+
+``` sh
 cd ~/NetBeansProjects/datemine/
+```
 
-TO COMPLETE
+- Get the remote sources (<sub><sup>guess what ? you need to have git install</sup></sub>), in the project folder :
 
-## Test
+``` git
+git init
+git remote add origin https://github.com/thomasleduc/datemine.git
+git pull
+git commit -am 'merge with an awesome project, My name is *yourname*'
+```
+#### Step 3 : Glassfish
+
+-Build and clean the project : ![Netbeans clean & build icon](http://2.bp.blogspot.com/_9hmP3Ho0t14/S3CbTCYXxqI/AAAAAAAAAY4/AOvjXs3cgec/s400/Picture+10.png "Netbeans clean & build icon")
+
+### Test
 
 After installing NB 6.0, get NB 6.0 'RESTful Web Services' plugin from the NB 6.0 IDE menu "Tools->Plugins->Available Plugins. After installing the plugin(s), IDE restarts.
