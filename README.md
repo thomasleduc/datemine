@@ -70,7 +70,7 @@ cd ~/NetBeansProjects/datemine/
 ``` git
 git init
 git remote add origin https://github.com/thomasleduc/datemine.git
-git pull
+git pull origin master
 git commit -am 'My name is *yourname* and merge with an awesome project.'
 ```
 
