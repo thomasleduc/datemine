@@ -34,7 +34,7 @@ public class Sharing extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column
-    @Getter @Setter private Integer id;
+    @Getter @Setter private Long id;
     /**
      * The project sharing.
      */

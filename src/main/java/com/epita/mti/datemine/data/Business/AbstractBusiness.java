@@ -48,7 +48,7 @@ public abstract class AbstractBusiness
      * @param id The id of the entity
      * @return The entity.
      */
-    public T findById(final Integer id) {
+    public T findById(final Long id) {
         return getDao().findById(id);
     }
 
@@ -59,5 +59,4 @@ public abstract class AbstractBusiness
     public void persist(final T entity) {
         getDao().persist(entity);
     }
-
 }

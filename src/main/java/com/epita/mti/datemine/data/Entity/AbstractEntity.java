@@ -29,13 +29,13 @@ public abstract class AbstractEntity implements Serializable, Comparable<Abstrac
      * The id getter.
      * @return The id of the Entity
      */
-    public abstract Integer getId();
+    public abstract Long getId();
 
     /**
      * The id setter.
      * @param id The value of the id to put in the property
      */
-    public abstract void setId(Integer id);
+    public abstract void setId(Long id);
 
     @Override
     public int hashCode() {

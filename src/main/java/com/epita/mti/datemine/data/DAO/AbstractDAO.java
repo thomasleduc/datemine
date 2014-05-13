@@ -40,7 +40,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
      * @param id of the searched entity
      * @return the entity according the id
      */
-    public T findById(final Integer id) {
+    public T findById(final Long id) {
         return (T) getEntityManager().find(getEntityClass(), id);
     }
 

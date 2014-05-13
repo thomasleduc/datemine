@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -41,7 +42,8 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
      * @return The Element Name in String format.
      */
     public String getElementName() {
-        return getBusiness().getDao().getEntityClass().getSimpleName().toLowerCase();
+        return getBusiness().getDao().getEntityClass().getSimpleName()
+                .toLowerCase();
     }
 
     /**
@@ -90,7 +92,7 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findById(@PathParam("id") Integer id) {
+    public Response findById(@PathParam("id") Long id) {
         Logger.getLogger(getElementName()).log(Level.INFO, null, "list acess");
         if (id == null) RESTError.BAD_PARAMETER.getResponse().build();
         T entity = getBusiness().findById(id);
@@ -113,18 +115,19 @@ public abstract class AbstractRESTService<S extends AbstractBusiness<D, T>,
         return getBusiness().findAll();
     }
 
-    @PUT
+    @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response add(T entity) {
         Logger.getLogger(getElementName()).log(Level.INFO, null, "add");
-        
+
         RESTError err = getBusiness().checkBeforeAdding(entity);
-        
+
         if (err != null)
             return err.getResponse().build();
-        
+
+        getBusiness().persist(entity);
         return Response.ok(entity, MediaType.APPLICATION_JSON).build();
     }
 

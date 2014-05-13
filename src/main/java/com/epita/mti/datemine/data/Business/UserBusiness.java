@@ -1,25 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.epita.mti.datemine.data.Business;
 
 import com.epita.mti.datemine.data.DAO.UserDAO;
 import com.epita.mti.datemine.data.Entity.User;
 import com.epita.mti.datemine.tools.RESTError;
+import com.epita.mti.datemine.tools.auth.AuthToken;
+import com.google.appengine.api.datastore.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityNotFoundException;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @RequestScoped
 @Named
 public class UserBusiness extends AbstractBusiness<UserDAO, User> {
+
+    /**
+     * The datastore Service. 
+     */
+    private static DatastoreService datastore =
+            DatastoreServiceFactory.getDatastoreService();
+    private static String authTokenKind = "_authToken";
 
     /**
      * The user DAO (injected).
@@ -41,5 +47,29 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         if (entity.getLogin().length() > 45) return RESTError.LOGIN_TOO_LONG;
 
         return null;
+    }
+
+    /**
+     * 
+     * @param token
+     * @return 
+     */
+    public AuthToken getAuthToken(String token) {
+        //todo use MemCache
+        Entity tokenEntity;
+        try {
+            tokenEntity = datastore
+                    .get(KeyFactory.createKey(authTokenKind, token));
+        } catch (com.google.appengine.api.datastore.EntityNotFoundException ex) {
+            Logger.getLogger(UserBusiness.class.getName())
+                    .log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+        return new AuthToken(
+                token,
+                (Long) tokenEntity.getProperty("account"),
+                (Long) tokenEntity.getProperty("time")
+        );
     }
 }
