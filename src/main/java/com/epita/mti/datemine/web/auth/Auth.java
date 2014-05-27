@@ -7,14 +7,14 @@
 package com.epita.mti.datemine.web.auth;
 
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author leduc_t
  */
-@Named
+@ManagedBean
 @SessionScoped
 public class Auth implements Serializable {
     
