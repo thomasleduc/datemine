@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login</title>
+        <h:outputStylesheet library="css" name="style.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Username" />
+                <h:inputText value="#{auth.username}" required="true"
+                             requiredMessage="Please, fill this field"
+                             id="username" />
+                <h:message for="username" class="error_message" />
+                
+                <h:outputLabel value="Password" />
+                <h:inputSecret value="#{auth.password}" required="true"
+                               requiredMessage="Please, fill this field"
+                               id="password" />
+                <h:message for="password" class="error_message" />
+                
+                <h:commandButton value="Login" action="#{auth.action}" />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

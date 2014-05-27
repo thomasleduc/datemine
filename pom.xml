@@ -26,6 +26,25 @@
     </properties>
     
     <dependencies>
+        <!-- JSF 2 -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Persistence -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -41,11 +60,15 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.2.Final</version>
         </dependency>
+        
+        <!-- XML -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
+        
+        <!-- Tools -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -58,7 +81,6 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
@@ -89,7 +111,13 @@
             <version>${gae.version}</version>
             <scope>test</scope>
         </dependency>
-
+        
+        <!-- PrimeFaces -->
+        <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>5.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -141,5 +169,14 @@
             </plugin>
         </plugins>
     </build>
+    
+    <repositories>
+        <repository>
+                <id>prime-repo</id>
+                <name>PrimeFaces Maven Repository</name>
+                <url>http://repository.primefaces.org</url>
+                <layout>default</layout>
+        </repository>
+    </repositories>
 
 </project>
