@@ -43,16 +43,16 @@ public class LoginFilter implements Filter  {
         
         if (session == null || !session.isLoggedIn()) {
             if (url.indexOf("main.xhtml") >= 0 || url.indexOf("logout.xhtml") >= 0) {
-                resp.sendRedirect(req.getServletContext().getContextPath() + "/login.xhtml");
+                resp.sendRedirect(req.getContextPath() + "/login.xhtml");
             } else {
                 chain.doFilter(request, response);
             }
         } else {
             if (url.indexOf("register.xhtml") >= 0 || url.indexOf("login.xhtml") >= 0) {
-                resp.sendRedirect(req.getServletContext().getContextPath() + "/main.xhtml");
+                resp.sendRedirect(req.getContextPath() + "/main.xhtml");
             } else if (url.indexOf("logout.xhtml") >= 0) {
                 req.getSession().removeAttribute("auth");
-                resp.sendRedirect(req.getServletContext().getContextPath() + "/login.xhtml");
+                resp.sendRedirect(req.getContextPath() + "/login.xhtml");
             } else {
                 chain.doFilter(request, response);
             }
@@ -62,5 +62,4 @@ public class LoginFilter implements Filter  {
     @Override
     public void destroy() {
     }
-    
 }

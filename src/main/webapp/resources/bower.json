@@ -1,0 +1,9 @@
+{
+  "name": "datemine",
+  "version": "2.1.2-pre",
+  "license": "EPITA",
+  "dependencies": {
+    "jquery": "2.1.1",
+    "bootstrap":"3.1.1"
+  }
+}

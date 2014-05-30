@@ -1,0 +1,43 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="index.xhtml">
+            <img src="resources/img/logo-simple-min.png" alt="datemine logo" class="datemine-brand"/>
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+            <ui:fragment rendered="#{auth.username != null}">
+                <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> #{auth.username} <span class="caret"></span></a>
+                <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                  <li><a href="#">My Profile</a></li>
+                </ul>
+            </ui:fragment>
+        </li>
+        <li>
+            <h:outputLink rendered="#{auth.username != null}" value="logout.xhtml">
+                <i class="glyphicon glyphicon-lock"></i> Logout
+            </h:outputLink>
+            <h:outputLink rendered="#{auth.username == null}" value="login.xhtml">
+                <i class="glyphicon glyphicon-lock"></i> Login
+            </h:outputLink>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div>
+<!-- /Header -->
+</ui:composition>

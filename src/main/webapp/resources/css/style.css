@@ -3,3 +3,43 @@
     font-family:Tahoma, Arial;
     font-size:0.6em;
 }
+
+#home { 
+    background: url(../img/motivator.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    /* ie */
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/motivator.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/motivator.jpg', sizingMethod='scale')";
+}
+
+#home .calendar {
+    position:absolute;
+    left:50%;
+    margin-left:-200px;
+    width:400px;
+    height:300px;
+}
+
+#home .infos {
+    position:absolute;
+    width:400px;
+    height:auto;
+    top:400px;
+    left:50%;
+    margin-left:-200px;
+    text-align:center;
+}
+
+/* header */
+
+.datemine-brand {
+    width:100px;
+    height:75px;
+    margin-top:-26px;
+}
+
+/* / header */

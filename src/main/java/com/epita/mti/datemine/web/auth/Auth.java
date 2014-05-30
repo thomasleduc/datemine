@@ -63,9 +63,14 @@ public class Auth implements Serializable {
      * @return the isLoggedIn
      */
     public String action() {
-        System.out.println("-----------------------------action()-----------------------");
-        loggedIn = true; // TODO check if the User is logged
-        return "main.xhtml?faces-redirect=true";
+        if (this.username.equals("thomas") && this.password.equals("thomas")) {
+            loggedIn = true; // TODO check if the User is logged
+            return "main.xhtml?faces-redirect=true";
+        } else {
+            this.username = null;
+            this.password = null;
+            return "login.xhtml?faces-redirect=true";
+        }
     }
     
     /**

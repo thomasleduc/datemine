@@ -8,11 +8,33 @@
     <h:head>
         <meta charset="utf-8" />
         <title>Datemine</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="resources/bower_components/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link href="resources/css/style.css" rel="stylesheet" />
     </h:head>
-    <h:body>
-        <h:outputLink rendered="#{auth.username == null}" value="login.xhtml"> Login </h:outputLink>
-        <h:outputLink rendered="#{auth.username == null}" value="register.xhtml"> Register </h:outputLink>
-        <h:outputLink value="main.xhtml"> Main </h:outputLink>
-        <h:outputLink rendered="#{auth.username != null}" value="logout.xhtml"> Logout </h:outputLink>
+    <h:body id="home">
+        <ui:include src="structure/header.xhtml" />
+        
+        <img src="resources/img/calendar.png" class="calendar" alt="calendar"/>
+        
+        <div class="infos">
+            <ui:fragment rendered="#{auth.username == null}">
+                <h:outputLink value="login.xhtml">Login</h:outputLink>
+            </ui:fragment>
+            <ui:fragment rendered="#{auth.username != null}">
+                <h:outputLink
+                    value="main.xhtml"
+                    class="btn btn-default btn-danger btn-lg btn-block">
+                    <span class="glyphicon glyphicon-th"></span> My Projects
+                </h:outputLink>
+            </ui:fragment>
+        </div>
+        <!-- script references -->
+        <script src="resources/bower_components/jquery/jquery.js"></script>
+        <script src="resources/bower_components/bootstrap/js/bootstrap.js"></script>
+        <script src="resources/js/scripts.js"></script>
     </h:body>
 </html>

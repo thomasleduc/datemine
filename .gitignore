@@ -15,4 +15,4 @@ hs_err_pid*
 target/
 
 # bower #
-src/main/webapp/bower_components/
+src/main/webapp/resources/bower_components/
