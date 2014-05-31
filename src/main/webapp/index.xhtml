@@ -14,7 +14,7 @@
         <!--[if lt IE 9]>
                 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link href="resources/css/style.css" rel="stylesheet" />
+        <h:outputStylesheet library="css" name="style.css" />
     </h:head>
     <h:body>
         <div id="home">
@@ -24,7 +24,16 @@
 
             <div class="infos">
                 <ui:fragment rendered="#{auth.username == null}">
-                    <h:outputLink value="login.xhtml">Login</h:outputLink>
+                    <h:outputLink
+                        value="login.xhtml"
+                        class="btn btn-default btn-info btn-lg btn-block">
+                        <span class="glyphicon glyphicon-off"></span> Login
+                    </h:outputLink>
+                    <h:outputLink
+                        value="register.xhtml"
+                        class="btn btn-default btn-danger btn-lg btn-block">
+                        <span class="glyphicon glyphicon-list-alt"></span> Register
+                    </h:outputLink>
                 </ui:fragment>
                 <ui:fragment rendered="#{auth.username != null}">
                     <h:outputLink

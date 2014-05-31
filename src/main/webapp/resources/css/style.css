@@ -15,15 +15,15 @@ html, body {
     display:block;
     width:100%;
     height:100%;
-    background: url(../img/motivator.jpg) no-repeat center center fixed; 
+    background: #222222 url("#{resource['img/motivator.jpg']}") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
     /* ie */
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/motivator.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/motivator.jpg', sizingMethod='scale')";
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="#{resource['img/motivator.jpg']}", sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{resource['img/motivator.jpg']}', sizingMethod='scale')";
 }
 
 #home .calendar {
@@ -70,6 +70,24 @@ html, body {
 
 /* / home */
 
+/* login */
+#login_panel {
+    position:absolute;
+    width:300px;
+    height:200px;
+    margin-left:-150px;
+    margin-top:-100px;
+    left:50%;
+    top:40%;
+}
+
+#login_panel .input-group {
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right:5px;
+}
+/* / login */
 
 /* header */
 .datemine-brand {
