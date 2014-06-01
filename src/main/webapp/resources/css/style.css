@@ -89,6 +89,25 @@ html, body {
 }
 /* / login */
 
+/* register */
+
+#registerform {
+    position:absolute;
+    left:50%;
+    top:50%;
+    padding:10px;
+    width:400px;
+    height:450px;
+    margin-top:-225px;
+    margin-left:-200px;
+    background:white;
+}
+
+#registerform {
+}
+
+/* /register*/
+
 /* header */
 .datemine-brand {
     width:100px;
