@@ -2,9 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <meta charset="utf-8" />
         <link rel="shortcut icon" href="resources/img/logo-simple-fav.gif" type="image/x-icon" />
@@ -23,7 +21,7 @@
             <img src="resources/img/calendar.png" class="calendar" alt="calendar"/>
 
             <div class="infos">
-                <ui:fragment rendered="#{auth.username == null}">
+                <ui:fragment rendered="#{sessBean.username == null}">
                     <h:outputLink
                         value="login.xhtml"
                         class="btn btn-default btn-info btn-lg btn-block">
@@ -35,7 +33,7 @@
                         <span class="glyphicon glyphicon-list-alt"></span> Register
                     </h:outputLink>
                 </ui:fragment>
-                <ui:fragment rendered="#{auth.username != null}">
+                <ui:fragment rendered="#{sessBean.username != null}">
                     <h:outputLink
                         value="main.xhtml"
                         class="btn btn-default btn-danger btn-lg btn-block">

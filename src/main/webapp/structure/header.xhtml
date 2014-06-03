@@ -20,18 +20,21 @@
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-            <ui:fragment rendered="#{auth.username != null}">
-                <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> #{auth.username} <span class="caret"></span></a>
+            <ui:fragment rendered="#{sessBean.username != null}">
+                <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> #{sessBean.username} <span class="caret"></span></a>
                 <ul id="g-account-menu" class="dropdown-menu" role="menu">
                   <li><a href="#">My Profile</a></li>
                 </ul>
             </ui:fragment>
+            <h:outputLink rendered="#{sessBean.username == null}" value="register.xhtml">
+                <i class="glyphicon glyphicon-pencil"></i> Register
+            </h:outputLink>
         </li>
         <li>
-            <h:outputLink rendered="#{auth.username != null}" value="logout.xhtml">
+            <h:outputLink rendered="#{sessBean.username != null}" value="logout.xhtml">
                 <i class="glyphicon glyphicon-lock"></i> Logout
             </h:outputLink>
-            <h:outputLink rendered="#{auth.username == null}" value="login.xhtml">
+            <h:outputLink rendered="#{sessBean.username == null}" value="login.xhtml">
                 <i class="glyphicon glyphicon-lock"></i> Login
             </h:outputLink>
         </li>

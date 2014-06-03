@@ -29,21 +29,61 @@
                         <span class="input-group-addon">Username</span>
                         <h:inputText value="#{registerController.username}" required="true"
                                      requiredMessage="Please, fill the username"
-                                     id="username" class="form-control" />
+                                     id="username"
+                                     class="form-control #{registerController.usernameAlreadyTaken? has-error : ''}" >
+                            <f:ajax execute="@this"
+                                    render="username-already-taken-wrapper"
+                                    listener="#{registerController.isUsernameAlreadyTaken}"/>
+                        </h:inputText>
                     </div>
+                    
+                    <h:panelGroup id="username-already-taken-wrapper">
+                        <h:outputText rendered="#{registerController.usernameAlreadyTaken}"
+                                      value="Sorry, username is already taken"
+                                      class="error_message"/>
+                    </h:panelGroup>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon">Email</span>
+                        <h:inputText value="#{registerController.email}" required="true"
+                                     requiredMessage="Please, fill the email"
+                                     id="email" class="form-control" >
+                            <f:ajax execute="@this"
+                                    render="email-already-taken-wrapper"
+                                    listener="#{registerController.isEmailAlreadyTaken}"/>
+                        </h:inputText>
+                    </div>
+                    
+                    <h:panelGroup id="email-already-taken-wrapper">
+                        <h:outputText rendered="#{registerController.emailAlreadyTaken}"
+                                      value="This email is already used."
+                                      class="error_message"/>
+                        <h:outputLink rendered="#{registerController.emailAlreadyTaken}"
+                                      value="">Click here to retreive password.
+                        </h:outputLink>
+                    </h:panelGroup>
 
-                    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">
-                        <h:outputLabel for="login" value="Login" />
-                        <p:inputText id="login" label="#{registerController.username}" required="true" />
+                    <h:panelGroup id="register_password">
+                        <div class="input-group">
+                            <span class="input-group-addon">Password</span>
+                            <p:password id="password" value="#{registerController.password}"
+                                        match="vpassword" label="password" required="true"
+                                        requiredMessage="Please, enter the password"
+                                        class="form-control"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">Retype</span>
+                            <p:password id="vpassword" value="#{registerController.password}"
+                                        match="vpassword" label="password" required="true"
+                                        requiredMessage="Please, enter the password Verification"
+                                        class="form-control"/>
+                        </div>
+                    </h:panelGroup>
 
-                        <h:outputLabel for="password" value="Password: " />
-                        <p:password id="password" value="#{registerController.password}" match="vpassword" label="password" required="true" />
-
-                        <h:outputLabel for="vpassword" value="Password Verification: *" />
-                        <p:password id="vpassword" label="Password 2" required="true" />
-                    </h:panelGrid>
-
-                    <p:commandButton update="matchGrid" value="Register" action="#{registerController.action}" class="btn btn-default btn-info center-block"/>
+                    <p:commandButton update="register_password"
+                                     value="Register"
+                                     action="#{registerController.action}"
+                                     class="btn btn-default btn-info center-block bottom-aligned"/>
                 
                     <p:messages id="messages" showDetail="true" autoUpdate="true" />
                 </h:form>

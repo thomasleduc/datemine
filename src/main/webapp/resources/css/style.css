@@ -1,7 +1,8 @@
 .error_message {
     color:red;
     font-family:Tahoma, Arial;
-    font-size:0.6em;
+    font-size:0.8em;
+    margin-left:8px;
 }
 
 html, body {
@@ -91,19 +92,27 @@ html, body {
 
 /* register */
 
-#registerform {
+#register_panel {
     position:absolute;
     left:50%;
     top:50%;
-    padding:10px;
     width:400px;
-    height:450px;
-    margin-top:-225px;
+    height:auto;
+    margin-top:-150px;
     margin-left:-200px;
     background:white;
 }
 
-#registerform {
+#register_panel .input-group {
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    padding-right:8px;
+}
+
+.bottom-aligned {
+    position:absolute;
+    bottom:5px;
 }
 
 /* /register*/
