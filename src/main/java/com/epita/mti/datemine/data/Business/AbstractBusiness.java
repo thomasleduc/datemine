@@ -59,4 +59,14 @@ public abstract class AbstractBusiness
     public void persist(final T entity) {
         getDao().persist(entity);
     }
+
+    /**
+     * @param str The string to test.
+     * @param min The minimum length.
+     * @param max The maximum length.
+     * @return if the length of the string is between min and max parameter.
+     */
+    protected static Boolean lenghtBetween(final String str, int min, int max) {
+        return (str.length() >= min) && (str.length() <= max);
+    }
 }

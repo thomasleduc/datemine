@@ -20,7 +20,8 @@ public enum RESTError {
     NOT_FOUND(Status.NOT_FOUND, "entity_not_found"),
     LOGIN_TOO_SHORT(Status.NOT_ACCEPTABLE, "login_too_short"),
     LOGIN_TOO_LONG(Status.NOT_ACCEPTABLE, "login_too_long"),
-    EMAIL_BAD_FORMAT(Status.NOT_ACCEPTABLE, "email_bad_format");
+    EMAIL_BAD_FORMAT(Status.NOT_ACCEPTABLE, "email_bad_format"),
+    PROJECT_NAME_LENGTH(Status.NOT_ACCEPTABLE, "project_name_length");
 
     /**
      * The error response builder.
