@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8" />
         <link rel="shortcut icon" href="resources/img/logo-simple-fav.gif" type="image/x-icon" />
@@ -27,14 +28,18 @@
                         <span class="input-group-addon">Username</span>
                         <h:inputText value="#{loginController.username}" required="true"
                                      requiredMessage="Please, fill the username"
-                                     id="username" class="form-control" />
+                                     id="username" class="form-control">
+                            <f:validateLength minimum="#{loginController.loginMin}" maximum="#{loginController.loginMax}" />
+                        </h:inputText>
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-addon">Password</span>
                         <h:inputSecret value="#{loginController.password}" required="true"
                                        requiredMessage="Please, fill the password"
-                                       id="password" class="form-control" />
+                                       id="password" class="form-control">
+                            <f:validateLength minimum="#{loginController.passwordMin}" maximum="#{loginController.passwordMax}" />
+                        </h:inputSecret>
                     </div>
 
                     <h:commandButton value="Login"

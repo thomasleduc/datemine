@@ -3,11 +3,11 @@ package com.epita.mti.datemine.data.Business;
 import com.epita.mti.datemine.data.DAO.ProjectDAO;
 import com.epita.mti.datemine.data.Entity.Project;
 import com.epita.mti.datemine.tools.RESTError;
-import java.util.Collection;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
- *
+ * The project Business class.
  * @author leduc_t
  */
 public class ProjectBusiness extends AbstractBusiness<ProjectDAO, Project> {
@@ -23,12 +23,16 @@ public class ProjectBusiness extends AbstractBusiness<ProjectDAO, Project> {
     @Override
     public RESTError checkBeforeAdding(Project project) {
         if (lenghtBetween(project.getName(), 2, 80)) {
-            return RESTError.PROJECT_NAME_LENGTH;            
+            return RESTError.PROJECT_NAME_LENGTH;
         }
         return null;
     }
 
-    public Collection<Project> searchProjectListWithPrefix(String prefix) {
+    public List<Project> searchProjectListWithPrefix(String prefix) {
         return projectDAO.searchProjectListWithPrefix(prefix);
+    }
+    
+    public List<Project> getProjects(long userid, SharingBusiness.SharingRight right) {
+        return projectDAO.getProjects(userid, right.getValue());
     }
 }

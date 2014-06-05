@@ -34,6 +34,7 @@
                             <f:ajax execute="@this"
                                     render="username-already-taken-wrapper"
                                     listener="#{registerController.isUsernameAlreadyTaken}"/>
+                            <f:validateLength minimum="#{registerController.loginMin}" maximum="#{registerController.loginMax}" />
                         </h:inputText>
                     </div>
                     
@@ -69,7 +70,9 @@
                             <p:password id="password" value="#{registerController.password}"
                                         match="vpassword" label="password" required="true"
                                         requiredMessage="Please, enter the password"
-                                        class="form-control"/>
+                                        class="form-control">
+                                <f:validateLength minimum="#{registerController.passwordMin}" maximum="#{registerController.passwordMax}" />
+                            </p:password>
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon">Retype</span>

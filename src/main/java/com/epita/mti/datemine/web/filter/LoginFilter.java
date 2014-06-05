@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * 
  * @author leduc_t
  */
 public class LoginFilter implements Filter  {
-    
     @Inject
     SessBean session;
 
@@ -50,8 +49,7 @@ public class LoginFilter implements Filter  {
             if (url.contains("register.xhtml") || url.contains("login.xhtml")) {
                 resp.sendRedirect(req.getContextPath() + "/main.xhtml");
             } else if (url.contains("logout.xhtml")) {
-                session.setUsername(null);
-                session.setLoggedIn(false);
+                session.invalidate();
                 resp.sendRedirect(req.getContextPath() + "/login.xhtml");
             } else {
                 chain.doFilter(request, response);

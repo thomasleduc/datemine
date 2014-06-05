@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.epita.mti.datemine.web.controller;
 
 import com.epita.mti.datemine.data.Business.UserBusiness;
@@ -19,7 +13,7 @@ import lombok.Setter;
 
 /**
  *
- * @author macbookpro
+ * @author leduc_t
  */
 @Named
 @RequestScoped
@@ -28,20 +22,29 @@ public class LoginController {
     private final static Logger log =
             Logger.getLogger(LoginController.class.getName());
 
-    @Inject
-    private SessBean session;
-    @Inject
-    private UserBusiness userBusiness;
-    @Getter @Setter
-    private String username;
-    @Getter @Setter
-    private String password;
+    @Inject private SessBean session;
+    @Inject private UserBusiness userBusiness;
+    @Getter @Setter private String username;
+    @Getter @Setter private String password;
+    
+    /**
+     * Validation stuff
+     */
+    @Getter private final int loginMin;
+    @Getter private final int loginMax;
+    @Getter private final int passwordMin;
+    @Getter private final int passwordMax;
 
     /**
      * Creates a new instance of LoginController
      */
     public LoginController() {
-
+        username = null;
+        password = null;
+        loginMin = UserBusiness.CheckingConstrain.LOGIN.getMin();
+        loginMax = UserBusiness.CheckingConstrain.LOGIN.getMax();
+        passwordMin = UserBusiness.CheckingConstrain.PASSWORD.getMin();
+        passwordMax = UserBusiness.CheckingConstrain.PASSWORD.getMax();
     }
 
     /**
@@ -53,27 +56,27 @@ public class LoginController {
         if (!userBusiness.checkUsername(username)) {
             log.log(Level.SEVERE,
                     "{0} : Login : Possible username attack", username);
-            return "login.xhtml?faces-redirect=true";
+            return "login.xhtml?faces-redirect=true&error=true";
         }
 
         if (!userBusiness.checkPassword(password)) {
             log.log(Level.SEVERE,
                     "{0} : Login : Possible password attack", password);
-            return "login.xhtml?faces-redirect=true";
+            return "login.xhtml?faces-redirect=true&error=true";
         }
 
         // AUTHENTICATE
         User user = userBusiness.authenticate(username, password);
         if (user == null) {
             log.log(Level.SEVERE,
-                    "{0} : Login : Failed authenticate", password);
+                    "Login({0} : {1}) : Failed authenticate",
+                    new Object[]{username, password});
             session.invalidate();
             return "login.xhtml?faces-redirect=true";
         }
 
         // SESSION FILLING
-        session.setUsername(user.getLogin());
-        session.setLoggedIn(true);
+        session.init(user);
         return "main.xhtml?faces-redirect=true";
     }
 }

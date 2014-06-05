@@ -22,39 +22,54 @@ public class RegisterController {
     /**
      * Business layer injected.
      */
-    @Inject
-    private UserBusiness userBusiness;
+    @Inject private UserBusiness userBusiness;
     /**
      * Error username.
      */
-    @Getter
-    private Boolean usernameAlreadyTaken;
+    @Getter private Boolean usernameAlreadyTaken;
     /**
      * Error email.
      */
-    @Getter
-    private Boolean emailAlreadyTaken;
+    @Getter private Boolean emailAlreadyTaken;
     /**
      * Field email.
      */
-    @Getter @Setter
-    private String email;
+    @Getter @Setter private String email;
     /**
      * Field username.
      */
-    @Getter @Setter
-    private String username;
+    @Getter @Setter private String username;
     /**
      * Field password.
      */
-    @Getter @Setter
-    private String password;
+    @Getter @Setter private String password;
+    /**
+     * Login minimum size.
+     */
+    @Getter private final int loginMin;
+    /**
+     * Login maximum size.
+     */
+    @Getter private final int loginMax;
+    /**
+     * Password minimum size.
+     */
+    @Getter private final int passwordMin;
+     /**
+     * Password maximum size.
+     */
+    @Getter private final int passwordMax;
 
     /**
      * Creates a new instance of RegisterController.
      */
     public RegisterController() {
         usernameAlreadyTaken = false;
+        loginMin = UserBusiness.CheckingConstrain.LOGIN.getMin();
+        loginMax = UserBusiness.CheckingConstrain.LOGIN.getMax();
+        passwordMin = UserBusiness.CheckingConstrain.PASSWORD.getMin();
+        passwordMax = UserBusiness.CheckingConstrain.PASSWORD.getMax();
+
     }
 
     /**
@@ -89,7 +104,10 @@ public class RegisterController {
             return "register.xhtml?faces-redirect=true";
         }
         // Register the user
-        userBusiness.register(username, password, email);
-        return "login.xhtml?faces-redirect=true";
+        if (userBusiness.register(username, password, email)) {
+            return "login.xhtml?faces-redirect=true";
+        } else {
+            return "register.xhtml?faces-redirect=true&error=true";
+        }
     }
 }

@@ -1,9 +1,12 @@
 package com.epita.mti.datemine.data.DAO;
 
+import com.epita.mti.datemine.data.Business.UserBusiness;
 import com.epita.mti.datemine.data.DAO.tools.FieldAccess;
 import com.epita.mti.datemine.data.Entity.AbstractEntity;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,6 +22,8 @@ import javax.transaction.Transactional;
  * @param <T> The entity
  */
 public abstract class AbstractDAO<T extends AbstractEntity> {
+    
+    private static final Logger log = Logger.getLogger(AbstractDAO.class.getName());
 
     /**
      * EntityManager inject by the CDI
@@ -65,7 +70,9 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
         try {
             em.persist(entity);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            log.log(Level.INFO,
+                    "{0} can't be persit correctly",
+                    entity.toString());
             return false;
         }
         return true;

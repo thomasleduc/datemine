@@ -1,5 +1,6 @@
 package com.epita.mti.datemine.web;
 
+import com.epita.mti.datemine.data.Entity.User;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -14,6 +15,8 @@ import lombok.Setter;
 @Named
 public class SessBean implements Serializable {
     @Getter @Setter
+    private long id;
+    @Getter @Setter
     private String username;
     private boolean loggedIn;
 
@@ -21,26 +24,30 @@ public class SessBean implements Serializable {
      * Create the bean.
      */
     public SessBean() {
-    
+        id = 0;
+        username = null;
+        loggedIn = false;
     }
 
     /**
-     * @return if the user is logged in
+     * @return if the user is logged in.
      */
     public boolean isLoggedIn() {
         return this.loggedIn;
     }
 
     /**
-     * @param loggedIn the isLoggedIn to set
+     * Invalidate the session.
      */
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
+    public void invalidate() {
+        loggedIn = false;
+        setUsername(null);
     }
 
-    public void invalidate() {
-        setLoggedIn(false);
-        setUsername(null);
+    public void init(User user) {
+        setId(user.getId());
+        setUsername(user.getLogin());
+        loggedIn = true;
     }
 }
 

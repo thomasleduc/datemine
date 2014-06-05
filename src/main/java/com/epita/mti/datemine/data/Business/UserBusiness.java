@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import lombok.Getter;
 
 /**
  *
@@ -18,8 +19,9 @@ import javax.inject.Named;
 @RequestScoped
 @Named
 public class UserBusiness extends AbstractBusiness<UserDAO, User> {
-    
-    private static final Logger log = Logger.getLogger(UserBusiness.class.getName()); 
+
+    private static final Logger log = Logger.getLogger(UserBusiness.class.getName());
+
     /**
      * The user DAO (injected).
      */
@@ -31,13 +33,42 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         return userDAO;
     }
 
+    /**
+     * The checking constrain.
+     */
+    public enum CheckingConstrain {
+        /**
+         * The login limits.
+         */
+        LOGIN(4, 45),
+        /**
+         * The password limits.
+         */
+        PASSWORD(5, 70);
+        @Getter
+        private final int min;
+        @Getter
+        private final int max;
+        private CheckingConstrain(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+    }
+
     @Override
     public RESTError checkBeforeAdding(User entity) {
 
-        if (entity == null) return RESTError.BAD_PARAMETER;
-        if (entity.getLogin() == null ) return RESTError.BAD_PARAMETER;
-        if (entity.getLogin().length() < 4) return RESTError.LOGIN_TOO_SHORT;
-        if (entity.getLogin().length() > 45) return RESTError.LOGIN_TOO_LONG;
+        if (entity == null || entity.getLogin() == null) {
+            return RESTError.BAD_PARAMETER;
+        }
+
+        if (entity.getLogin().length() < CheckingConstrain.LOGIN.min) {
+            return RESTError.LOGIN_TOO_SHORT;
+        }
+
+        if (entity.getLogin().length() > CheckingConstrain.LOGIN.max) {
+            return RESTError.LOGIN_TOO_LONG;
+        }
 
         return null;
     }
@@ -62,11 +93,11 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         if (!DatemineDigest.compare(password, user.getPasswd())) {
             return null;
         }
-        
+
         // If all right, return it.
         return user;
     }
-    
+
     /**
      * @param username The email to be tested
      * @return if the username exist in the base.
@@ -74,7 +105,7 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
     public Boolean usernameExist(String username) {
         return userDAO.exist(FieldAccess.USERNAME, username);
     }
-    
+
     /**
      * @param email The email to be tested
      * @return if the email exist in the base.
@@ -82,29 +113,59 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
     public Boolean emailExist(String email) {
         return userDAO.exist(FieldAccess.USEREMAIL, email);
     }
-    
+
+    /**
+     * The register method (date is default : TODAY).
+     * @param username The user login.
+     * @param password The user password.
+     * @param email The user email.
+     * @return if the user seems registered.
+     */
     public Boolean register(String username, String password, String email) {
         return register(username, DatemineDigest.encode(password), email, new Date());
     }
 
+    /**
+     * The register method.
+     * @param username The user login.
+     * @param password The user password.
+     * @param email The user email.
+     * @param date The user account creation date.
+     * @return if the user seems registered.
+     */
     public Boolean register(String username, String password, String email, Date date) {
         User newUser = new User(null, username, password, email, date);
         if (checkBeforeAdding(newUser) == null) {
             return userDAO.persist(newUser);
         }
-        
+
+        log.log(Level.INFO,
+                "Register({0} : {1}) : Failed Checking.",
+                new String[]{username, email});
         return false;
     }
 
+    /**
+     * @param username The username.
+     * @return if the username is ok.
+     */
     public boolean checkUsername(String username) {
-        if (username == null) return false;
-        if (username.length() < 4) return false;
-        return username.length() <= 40;
+        if (username == null) {
+            return false;
+        }
+        return username.length() >= CheckingConstrain.LOGIN.min
+            && username.length() <= CheckingConstrain.LOGIN.max;
     }
 
+    /**
+     * @param password The password.
+     * @return if the password is ok.
+     */
     public boolean checkPassword(String password) {
-        if (password == null) return false;
-        if (password.length() < 4) return false;
-        return password.length() <= 70;
+        if (password == null) {
+            return false;
+        }
+        return password.length() >= CheckingConstrain.PASSWORD.min
+            && password.length() <= CheckingConstrain.PASSWORD.max;
     }
 }

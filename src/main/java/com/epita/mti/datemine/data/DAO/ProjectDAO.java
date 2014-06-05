@@ -1,7 +1,8 @@
 package com.epita.mti.datemine.data.DAO;
 
 import com.epita.mti.datemine.data.Entity.Project;
-import java.util.Collection;
+import java.util.List;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,7 +19,7 @@ public class ProjectDAO extends AbstractDAO<Project> {
         return Project.class;
     }
     
-    public Collection<Project> searchProjectListWithPrefix(String prefix) {
+    public List<Project> searchProjectListWithPrefix(String prefix) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root e = cq.from(Project.class);
@@ -31,5 +32,14 @@ public class ProjectDAO extends AbstractDAO<Project> {
     private String createPrefix(String prefix) {
         StringBuilder strB = new StringBuilder(prefix);
         return strB.append("%").toString();
+    }
+
+    public List<Project> getProjects(long userId, int minRight) {
+
+        Query query = em.createNativeQuery("{call getProjectsFromUser(?,?)}",
+                                   Project.class)
+                                   .setParameter(1, userId)
+                                   .setParameter(2, minRight);
+        return query.getResultList();
     }
 }
