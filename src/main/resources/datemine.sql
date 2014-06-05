@@ -27,13 +27,13 @@ DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `url` varchar(45) NOT NULL,
+  `url` varchar(45) DEFAULT NULL,
   `owner` int(11) NOT NULL,
+  `creationDate` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `url_UNIQUE` (`url`),
   KEY `project_owner_idx` (`owner`),
   CONSTRAINT `project_owner` FOREIGN KEY (`owner`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (4,'thomas','dbb6a1b889f536bc7c7723fa44c9de84df9b565d4825392acddf7963237975','2014-06-03 00:00:00','thomas@gmail.com');
+INSERT INTO `user` VALUES (7,'admin','a81e5fef28ede8f5c7486c92e659b4cd387ae6ed7e484682e0375cf7869921','2014-06-05 00:00:00','admin@datemine.com'),(9,'thomas','dbb6a1b889f536bc7c7723fa44c9de84df9b565d4825392acddf7963237975','2014-06-05 00:00:00','thomas@datemine.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -146,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-03 23:08:35
+-- Dump completed on 2014-06-06  1:15:09
