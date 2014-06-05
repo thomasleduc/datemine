@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.Getter;
 
 /**
  *
@@ -33,28 +32,6 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         return userDAO;
     }
 
-    /**
-     * The checking constrain.
-     */
-    public enum CheckingConstrain {
-        /**
-         * The login limits.
-         */
-        LOGIN(4, 45),
-        /**
-         * The password limits.
-         */
-        PASSWORD(5, 70);
-        @Getter
-        private final int min;
-        @Getter
-        private final int max;
-        private CheckingConstrain(int min, int max) {
-            this.min = min;
-            this.max = max;
-        }
-    }
-
     @Override
     public RESTError checkBeforeAdding(User entity) {
 
@@ -62,11 +39,11 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
             return RESTError.BAD_PARAMETER;
         }
 
-        if (entity.getLogin().length() < CheckingConstrain.LOGIN.min) {
+        if (entity.getLogin().length() < CheckingConstrain.LOGIN.getMin()) {
             return RESTError.LOGIN_TOO_SHORT;
         }
 
-        if (entity.getLogin().length() > CheckingConstrain.LOGIN.max) {
+        if (entity.getLogin().length() > CheckingConstrain.LOGIN.getMax()) {
             return RESTError.LOGIN_TOO_LONG;
         }
 
@@ -119,9 +96,9 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
      * @param username The user login.
      * @param password The user password.
      * @param email The user email.
-     * @return if the user seems registered.
+     * @return the registered user or null.
      */
-    public Boolean register(String username, String password, String email) {
+    public User register(String username, String password, String email) {
         return register(username, DatemineDigest.encode(password), email, new Date());
     }
 
@@ -131,18 +108,17 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
      * @param password The user password.
      * @param email The user email.
      * @param date The user account creation date.
-     * @return if the user seems registered.
+     * @return The registered user or null.
      */
-    public Boolean register(String username, String password, String email, Date date) {
+    public User register(String username, String password, String email, Date date) {
         User newUser = new User(null, username, password, email, date);
         if (checkBeforeAdding(newUser) == null) {
-            return userDAO.persist(newUser);
+            persist(newUser);
         }
-
         log.log(Level.INFO,
                 "Register({0} : {1}) : Failed Checking.",
                 new String[]{username, email});
-        return false;
+        return newUser;
     }
 
     /**
@@ -153,8 +129,8 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         if (username == null) {
             return false;
         }
-        return username.length() >= CheckingConstrain.LOGIN.min
-            && username.length() <= CheckingConstrain.LOGIN.max;
+        return username.length() >= CheckingConstrain.LOGIN.getMin()
+            && username.length() <= CheckingConstrain.LOGIN.getMax();
     }
 
     /**
@@ -165,7 +141,7 @@ public class UserBusiness extends AbstractBusiness<UserDAO, User> {
         if (password == null) {
             return false;
         }
-        return password.length() >= CheckingConstrain.PASSWORD.min
-            && password.length() <= CheckingConstrain.PASSWORD.max;
+        return password.length() >= CheckingConstrain.PASSWORD.getMin()
+            && password.length() <= CheckingConstrain.PASSWORD.getMax();
     }
 }

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Project #{projectBean.name}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="resources/bower_components/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!--[if lt IE 9]>
+                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link href="resources/css/style.css" rel="stylesheet" />
+    </h:head>
+    <h:body>
+        <ui:include src="structure/header.xhtml" />
+
+        <div class="container">
+            <p>project detail</p>
+        </div>
+
+        <footer class="text-center">This project is created by <a href="http://www.epita.net"><strong>EPITA</strong></a> students</footer>
+
+        <!-- Modal -->
+        <div class="modal" id="addWidgetModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Add Widget</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Add a widget stuff here..</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-dismiss="modal" class="btn">Close</a>
+                        <a href="#" class="btn btn-primary">Save changes</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dalog -->
+        </div>
+        <!-- / Modal -->
+
+        <!-- script references -->
+        <script src="resources/bower_components/jquery/jquery.js"></script>
+        <script src="resources/bower_components/bootstrap/js/bootstrap.js"></script>
+        <script src="resources/js/scripts.js"></script>
+    </h:body>
+</html>
+

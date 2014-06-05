@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.epita.mti.datemine.web.controller;
+package com.epita.mti.datemine.web.controller.home;
 
+import com.epita.mti.datemine.data.Business.CheckingConstrain;
 import com.epita.mti.datemine.data.Business.UserBusiness;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -65,11 +66,10 @@ public class RegisterController {
      */
     public RegisterController() {
         usernameAlreadyTaken = false;
-        loginMin = UserBusiness.CheckingConstrain.LOGIN.getMin();
-        loginMax = UserBusiness.CheckingConstrain.LOGIN.getMax();
-        passwordMin = UserBusiness.CheckingConstrain.PASSWORD.getMin();
-        passwordMax = UserBusiness.CheckingConstrain.PASSWORD.getMax();
-
+        loginMin = CheckingConstrain.LOGIN.getMin();
+        loginMax = CheckingConstrain.LOGIN.getMax();
+        passwordMin = CheckingConstrain.PASSWORD.getMin();
+        passwordMax = CheckingConstrain.PASSWORD.getMax();
     }
 
     /**
@@ -104,7 +104,7 @@ public class RegisterController {
             return "register.xhtml?faces-redirect=true";
         }
         // Register the user
-        if (userBusiness.register(username, password, email)) {
+        if (userBusiness.register(username, password, email) == null) {
             return "login.xhtml?faces-redirect=true";
         } else {
             return "register.xhtml?faces-redirect=true&error=true";

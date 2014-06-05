@@ -1,5 +1,6 @@
 package com.epita.mti.datemine.data.Entity;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,10 +39,17 @@ public class Project extends AbstractEntity {
     @Getter @Setter private String name;
 
     /**
-     * The project url.
+     * The project URL.
      */
     @Column
-    @Getter @Setter private String url; 
+    @Getter @Setter private String url;
+    
+    /**
+     * The project creation date.
+     */
+    @Column
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @Getter @Setter private Date creationDate; 
 
     /**
      * The user who own the project.
@@ -49,9 +58,16 @@ public class Project extends AbstractEntity {
     @JoinColumn
     @Getter @Setter private User owner;
     
+    /**
+     * Constructor with only the name.
+     * @param name The name.
+     */
+    public Project(String name) {
+        this.name = name;
+    } 
+
     @Override
     public String asCSV() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return toCSV(id, name, url, creationDate, owner);
     }
-    
 }

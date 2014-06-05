@@ -18,7 +18,7 @@ public class ProjectDAO extends AbstractDAO<Project> {
     public Class<Project> getEntityClass() {
         return Project.class;
     }
-    
+
     public List<Project> searchProjectListWithPrefix(String prefix) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
@@ -28,7 +28,7 @@ public class ProjectDAO extends AbstractDAO<Project> {
         TypedQuery<Project> query = em.createQuery(cq);
         return query.getResultList();
     }
-    
+
     private String createPrefix(String prefix) {
         StringBuilder strB = new StringBuilder(prefix);
         return strB.append("%").toString();

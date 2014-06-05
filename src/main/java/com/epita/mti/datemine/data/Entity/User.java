@@ -57,9 +57,8 @@ public class User extends AbstractEntity {
      * The user creation date.
      */
     @Column
-    @Getter @Setter
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date creationDate;
+    @Getter @Setter private Date creationDate;
 
     @Override
     public String asCSV() {

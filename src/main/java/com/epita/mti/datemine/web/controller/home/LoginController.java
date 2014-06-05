@@ -1,5 +1,6 @@
-package com.epita.mti.datemine.web.controller;
+package com.epita.mti.datemine.web.controller.home;
 
+import com.epita.mti.datemine.data.Business.CheckingConstrain;
 import com.epita.mti.datemine.data.Business.UserBusiness;
 import com.epita.mti.datemine.data.Entity.User;
 import com.epita.mti.datemine.web.SessBean;
@@ -41,10 +42,10 @@ public class LoginController {
     public LoginController() {
         username = null;
         password = null;
-        loginMin = UserBusiness.CheckingConstrain.LOGIN.getMin();
-        loginMax = UserBusiness.CheckingConstrain.LOGIN.getMax();
-        passwordMin = UserBusiness.CheckingConstrain.PASSWORD.getMin();
-        passwordMax = UserBusiness.CheckingConstrain.PASSWORD.getMax();
+        loginMin = CheckingConstrain.LOGIN.getMin();
+        loginMax = CheckingConstrain.LOGIN.getMax();
+        passwordMin = CheckingConstrain.PASSWORD.getMin();
+        passwordMax = CheckingConstrain.PASSWORD.getMax();
     }
 
     /**

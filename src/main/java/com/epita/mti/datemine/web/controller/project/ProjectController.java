@@ -1,4 +1,4 @@
-package com.epita.mti.datemine.web.controller;
+package com.epita.mti.datemine.web.controller.project;
 
 import com.epita.mti.datemine.data.Business.ProjectBusiness;
 import com.epita.mti.datemine.data.Business.SharingBusiness;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
  * The Project Controller for the dashboard page.
  * @author leduc_t
  */
-public class ProjectController {
+public abstract class ProjectController {
     @Inject
     private SessBean sessBean;
     @Inject
@@ -21,5 +21,5 @@ public class ProjectController {
 
     public List<Project> getProjects() {
         return business.getProjects(sessBean.getId(), SharingBusiness.SharingRight.MODIFY);
-    } 
+    }
 }

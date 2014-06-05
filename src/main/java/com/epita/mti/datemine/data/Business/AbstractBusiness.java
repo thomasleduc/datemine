@@ -55,9 +55,10 @@ public abstract class AbstractBusiness
     /**
      * Push the entity.
      * @param entity The entity to push.
+     * @return If the user 
      */
-    public void persist(final T entity) {
-        getDao().persist(entity);
+    public T persist(final T entity) {
+        return getDao().persist(entity);
     }
 
     /**

@@ -12,7 +12,11 @@ public enum FieldAccess {
     /**
      * User : The email column.
      */
-    USEREMAIL("email");
+    USEREMAIL("email"),
+    /**
+     * Project : The project name.
+     */
+    PROJECTNAME("name");
 
     /**
      * The text column.
