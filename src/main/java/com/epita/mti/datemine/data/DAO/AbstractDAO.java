@@ -67,17 +67,10 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
      */
     @Transactional(Transactional.TxType.REQUIRED)
     public T persist(final T entity) {
-        try {
-            em.persist(entity);
-            em.flush();
-            if (entity == null && entity.getId() == null) {
-                return entity;
-            }
-        } catch (Exception e) {
-            log.log(Level.INFO,
-                    "{0} can't be persit correctly",
-                    entity.toString());
-            return null;
+        em.persist(entity);
+        em.flush();
+        if (entity != null && entity.getId() != null) {
+            return entity;
         }
         return null;
     }

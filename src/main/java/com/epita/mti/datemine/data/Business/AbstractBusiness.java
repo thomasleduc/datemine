@@ -10,6 +10,8 @@ import com.epita.mti.datemine.data.DAO.AbstractDAO;
 import com.epita.mti.datemine.data.Entity.AbstractEntity;
 import com.epita.mti.datemine.tools.RESTError;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Abstract class which defined the Business level.
@@ -20,6 +22,8 @@ import java.util.Collection;
 public abstract class AbstractBusiness
 <D extends AbstractDAO<T>, T extends AbstractEntity> {
 
+    private static final Logger log =
+         Logger.getLogger(AbstractBusiness.class.getName());
     /**
      * Get the DAO according to the Business class.
      * @return The DAO.
@@ -58,7 +62,15 @@ public abstract class AbstractBusiness
      * @return If the user 
      */
     public T persist(final T entity) {
-        return getDao().persist(entity);
+        try {
+            return getDao().persist(entity);
+        } catch (Exception e) {
+            log.log(Level.INFO, "{0} can't be persit correctly{1}Cause by :{2}",
+                    new Object[]{entity.toString(),
+                                 System.getProperty("line.separator"),
+                                 e.getMessage()});
+        }
+        return null;
     }
 
     /**

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="utf-8" />
         <title>Projects</title>
@@ -26,7 +27,6 @@
                     <hr />
 
                     <ul class="list-unstyled">
-
                         <ul class="nav nav-pills nav-stacked">
                             <li class="nav-header"></li>
                             <li><a href="#"><i class="glyphicon glyphicon-list"></i> Layouts &amp; Templates</a></li>
@@ -37,7 +37,6 @@
                             <li><a href="#"><i class="glyphicon glyphicon-star"></i> Social Media</a></li>
                         </ul>
                     </ul>
-
                     <hr />
                 </div>
                 <!-- / Left column -->
@@ -58,8 +57,6 @@
                     <div class="row">
                         <!-- center left-->	
                         <div class="col-md-6">
-                            <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
-                            <hr />
 
                             <div class="btn-group btn-group-justified">
                                 <a href="#" class="btn btn-primary col-sm-3">
@@ -71,16 +68,82 @@
                                     Cloud
                                 </a>
                                 <a href="#" class="btn btn-primary col-sm-3">
-                                    <i class="glyphicon glyphicon-cog"></i><br />
-                                    Tools
+                                    <span class="glyphicon glyphicon-signal"></span><br />
+                                    Chart
                                 </a>
                                 <a href="#" class="btn btn-primary col-sm-3">
                                     <i class="glyphicon glyphicon-question-sign"></i><br />
                                     Help
                                 </a>
                             </div>
-                            <hr />              
+                            <hr />
 
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr><th>Project</th><th>Completion</th><th>Last done</th></tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{projectController.projectsList}" var="projectItem">
+                                        <tr><td>#{projectItem.name}</td><td>15%</td><td>Create this view</td></tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table>
+                            <hr />
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><h4>Notices</h4></div>
+                                <div class="panel-body">
+
+                                    <div class="alert alert-info">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        Look at this text if you want more informations.
+                                    </div>
+                                    
+                                    Here, it's you're dashboard, you can create and get an overview of all your projects.
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- / center left-->
+                        
+                        <!-- center Right-->
+                        <div class="col-md-6">
+                            <!-- New Project Panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <i class="glyphicon glyphicon-wrench pull-right"></i>
+                                        <h4>New Project</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <h:form class="form form-vertical">
+                                        <div class="control-group">
+                                            <label>Name</label>
+                                            <div class="controls">
+                                                <h:inputText value="#{newProjectController.name}" class="form-control" required="true" requiredMessage="Please, enter a name">
+                                                    <f:validateLength minimum="#{newProjectController.nameMin}" maximum="#{newProjectController.nameMax}" />
+                                                </h:inputText>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label></label>
+                                            <div class="controls">
+                                                <h:commandButton value="Create"
+                                                                 action="#{newProjectController.createProject}"
+                                                                 class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div><!--/panel content-->
+                            </div>
+                            <!-- / New Project Panel -->
+                            <hr />
+                            
+                            <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
+                            <hr />
+                            
                             <!--tabs-->
                             <div class="container">
                                 <div class="col-md-4">
@@ -110,84 +173,8 @@
                                     </div>
                                 </div>
                             </div>  
-
                             <!--/tabs-->
-
                             <hr />
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><h4>New Requests</h4></div>
-                                <div class="panel-body">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item active">Hosting virtual mailbox serv..</a>
-                                        <a href="#" class="list-group-item">Dedicated server doesn't..</a>
-                                        <a href="#" class="list-group-item">RHEL 6 install on new..</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!--/col-->
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><h4>Notices</h4></div>
-                                <div class="panel-body">
-
-                                    <div class="alert alert-info">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        Look at this text if you want more informations.
-                                    </div>
-                                    
-                                    Here, it's you're dashboard, you can create and get an overview of all your projects.
-                                </div>
-                            </div>
-
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr><th>Project</th><th>Completion</th><th>Last done</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>Java</td><td>2.45%</td><td>Create this view</td></tr>
-                                    <tr><td>PHP</td><td>56.2%</td><td>Review</td></tr>
-                                    <tr><td>PFEE iOS</td><td>25%</td><td>Make Authentication vi..</td></tr>
-                                    <tr><td>PFEE Android</td><td>2%</td><td>Make login view</td></tr>
-                                    <tr><td>Life</td><td>10%</td><td>Australian trip</td></tr>
-                                    <tr><td>..</td><td>..</td><td>..</td></tr>
-                                    <tr><td>..</td><td>..</td><td>..</td></tr>
-                                </tbody>
-                            </table>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        <i class="glyphicon glyphicon-wrench pull-right"></i>
-                                        <h4>New Project</h4>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-
-                                    <h:form class="form form-vertical">
-                                        <div class="control-group">
-                                            <label>Name</label>
-                                            <div class="controls">
-                                                <h:inputText value="#{newProjectController.name}" class="form-control" required="true" requiredMessage="Please, enter a name">
-                                                    <f:validateLength minimum="#{newProjectController.nameMin}" maximum="#{newProjectController.nameMax}" />
-                                                </h:inputText>
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <label></label>
-                                            <div class="controls">
-                                                <h:commandButton value="Create"
-                                                                 action="#{newProjectController.createProject}"
-                                                                 class="btn btn-primary" />
-                                            </div>
-                                        </div>
-                                    </h:form>
-
-
-                                </div><!--/panel content-->
-                            </div><!--/panel-->
 
                             <div class="panel panel-default">
                                 <div class="panel-heading"><div class="panel-title"><h4>Engagement</h4></div></div>
@@ -197,28 +184,9 @@
                                     <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EEEEEE/222" class="img-circle img-responsive" /></div>
                                 </div>
                             </div><!--/panel-->
-                        </div><!--/col-span-6-->
+                        </div><!-- / center Right-->
                     </div>
                     <!--/Main-->
-
-                    <hr />
-
-                    <a href="#"><strong><i class="glyphicon glyphicon-comment"></i> Discussions</strong></a>  
-
-                    <hr />
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="list-group">
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(3 mins ago)</small> The 3rd page reports don't contain any links. Does anyone know why..</a></li>
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(1 hour ago)</small> Hi all, I've just post a report that show the relationship betwe..</a></li>
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(2 hrs ago)</small> Paul. That document you posted yesterday doesn't seem to contain the over..</a></li>
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i> <small>(4 hrs ago)</small> The map service on c243 is down today. I will be fixing the..</a></li>
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(yesterday)</small> I posted a new document that shows how to install the services layer..</a></li>
-                                <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(yesterday)</small> ..</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <!-- / Main context -->
             </div>

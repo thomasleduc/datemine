@@ -3,6 +3,7 @@ package com.epita.mti.datemine.data.Entity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
@@ -52,12 +53,13 @@ public class Project extends AbstractEntity {
     @Getter @Setter private Date creationDate; 
 
     /**
-     * The user who own the project.
+     * The user who own the project,
+     * lazy to get the user only if we need it.
      */
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="owner")
     @Getter @Setter private User owner;
-    
+
     /**
      * Constructor with only the name.
      * @param name The name.
